@@ -1,12 +1,20 @@
 module TasksHelper
   def priority_label(task)
     if task.high?
-      'High Priority'
+      Task::PRIORITY_LABELS[:high]
     elsif task.medium?
-      'Medium Priority'
+      Task::PRIORITY_LABELS[:medium]
     else
-      'Low Priority'
+      Task::PRIORITY_LABELS[:low]
     end
+  end
+
+  def priorities_for_select(task)
+    options_for_select({
+      Task::PRIORITY_LABELS[:low] => :low,
+      Task::PRIORITY_LABELS[:medium] => :medium,
+      Task::PRIORITY_LABELS[:high] => :high
+    }, selected: task.priority)
   end
 
   def priority_class(task)
