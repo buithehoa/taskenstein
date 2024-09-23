@@ -1,27 +1,26 @@
-<div id="<%= dom_id task %>">
-  <p>
-    <strong>Title:</strong>
-    <%= task.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= task.description %>
-  </p>
-
-  <p>
-    <strong>Completed:</strong>
-    <%= task.completed %>
-  </p>
-
-  <p>
-    <strong>Due at:</strong>
-    <%= task.due_at %>
-  </p>
-
-  <p>
-    <strong>Priority:</strong>
-    <%= task.priority %>
-  </p>
-
+<div id="<%= dom_id task %>" class="row mb-3 task">
+    <div class="col-auto align-self-start">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="task1">
+        </div>
+    </div>
+    <div class="col">
+        <div>
+            <strong><%= task.title %></strong><br>
+            <small class="text-muted"><%= task.description %></small>
+        </div>
+    </div>
+    <div class="col-auto align-self-start">
+        <span class="badge <%= priority_class(task) %> text-uppercase">
+          <%= priority_label(task) %>
+        </span>
+    </div>
+    <div class="col-auto align-self-start due_at" style="min-width: 200px">
+      <% if task.due_at.present? %>
+        <span class="badge bg-light text-secondary">
+          <i class="fa-regular fa-clock me-2"></i>
+          <%= task.due_at.to_fs(:due_date) %>
+        </span>
+      <% end %>
+    </div>
 </div>

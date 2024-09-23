@@ -1,13 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Tasks | Taskenstein" %>
 
-<% content_for :title, "Tasks" %>
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-md-10 mx-auto d-flex justify-content-end">
+            <button class="btn btn-primary">New</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Tasks</h4>
 
-<h1>Tasks</h1>
-
-<div id="tasks">
-  <%= turbo_frame_tag "tasks" do %>
-    <%= render @tasks %>
-  <% end %>  
+                    <%= turbo_frame_tag "tasks" do %>
+                      <%= render @tasks %>
+                    <% end %>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <nav aria-label="Task list navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </div>
 
 <%= link_to "New task", new_task_path %>
