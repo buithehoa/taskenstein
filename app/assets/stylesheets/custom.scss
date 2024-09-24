@@ -1,5 +1,8 @@
-#tasks .task {
+#task_list .task {
     .due_at {
-        min-width: 210px;
+        width: 210px;
+    }
+    .priority .badge {
+        width: 125px;
     }
 }

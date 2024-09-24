@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = Task.all.where(completed: false)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -61,6 +61,21 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tasks_path, status: :see_other, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def complete
+    @task = Task.find(params[:id])
+    @task.update(completed: true)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "task_list",
+          partial: "tasks/list",
+          locals: { tasks: Task.all.where(completed: false) })
+      end
+      format.html { redirect_to tasks_path, notice: 'Task was successfully completed.' }
     end
   end
 

@@ -12,8 +12,8 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Tasks</h4>
 
-                    <%= turbo_frame_tag "tasks" do %>
-                      <%= render @tasks %>
+                    <%= turbo_frame_tag "task_list" do %>
+                      <%= render partial: "tasks/list", locals: { tasks: @tasks } %>
                     <% end %>
                 </div>
             </div>

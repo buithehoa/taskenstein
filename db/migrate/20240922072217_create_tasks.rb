@@ -3,7 +3,7 @@ class CreateTasks < ActiveRecord::Migration[7.2]
     create_table :tasks do |t|
       t.string :title
       t.text :description
-      t.boolean :completed
+      t.boolean :completed, default: false
       t.datetime :due_at
       t.integer :priority
 
