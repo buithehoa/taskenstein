@@ -2,7 +2,7 @@
   <div class="container py-5" data-controller="tasks--form">
     <div class="row mb-4">
       <div class="col-md-10 mx-auto d-flex">
-        <%= link_to 'Back to tasks', tasks_path, class: 'btn btn-secondary' %>
+        <%= link_to 'Back to Tasks', tasks_path, class: 'btn btn-secondary', data: { turbo_frame: "_top" } %>
       </div>
     </div>
     <div class="row">
