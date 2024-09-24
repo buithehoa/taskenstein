@@ -26,7 +26,6 @@ class TasksController < ApplicationController
     if @task.save
       respond_to do |format|
         format.html { redirect_to tasks_path, notice: 'Task was successfully created.' }
-        # format.turbo_stream { render turbo_stream: turbo_stream.replace("task_form", partial: "shared/redirect", locals: { url: tasks_path }) }
         format.turbo_stream { render partial: "shared/redirect", locals: { url: tasks_path } }
       end
     else
