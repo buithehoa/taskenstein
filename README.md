@@ -65,3 +65,7 @@ $ bundle exec rspec
 Finished in 1.13 seconds (files took 0.14603 seconds to load)
 24 examples, 0 failures
 ```
+If you encounter an `ActionView::Template::Error` indicating a permission denied, execute the following command to clear the cache and try again
+```
+$ sudo rm -rf tmp/cache
+```

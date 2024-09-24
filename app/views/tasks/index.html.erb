@@ -17,19 +17,12 @@
                     <% end %>
                 </div>
             </div>
+
             <!-- Pagination -->
-            <nav aria-label="Task list navigation">
-                <ul class="pagination justify-content-center mt-4">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
+            <nav aria-label="Task list navigation" class="mt-4">
+              <div class="d-flex justify-content-center">
+                <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+              </div>
             </nav>
         </div>
     </div>

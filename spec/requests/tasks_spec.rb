@@ -3,6 +3,28 @@ require 'rails_helper'
 RSpec.describe "Tasks", type: :request do
   let(:task) { create(:task) }
 
+  describe "GET /tasks" do
+    let!(:task1) { create(:task, completed: false, due_at: 1.day.from_now) }
+    let!(:task2) { create(:task, completed: false, due_at: 2.days.from_now) }
+    let!(:completed_task) { create(:task, completed: true, due_at: 3.days.from_now) }
+
+    it "assigns @pagy and @tasks" do
+      get tasks_path
+      expect(assigns(:pagy)).to be_a(Pagy)
+      expect(assigns(:tasks)).to match_array([task1, task2])
+    end
+
+    it "renders the index template" do
+      get tasks_path
+      expect(response).to render_template(:index)
+    end
+
+    it "returns a successful response" do
+      get tasks_path
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe "PATCH /tasks/:id" do
     context "with valid parameters" do
       let(:new_attributes) { { title: "Updated Task Title" } }
