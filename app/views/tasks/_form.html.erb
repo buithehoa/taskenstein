@@ -40,7 +40,7 @@
 
               <div class="mb-3 w-50">
                 <label for="task_due_at" class="form-label">Due at</label>
-                <%= form.text_field :due_at, class: "form-control datetimepicker" %>
+                <%= form.text_field :due_at, class: "form-control datetimepicker", data: { controller: "flatpickr" } %>
               </div>
 
               <div class="mb-3 text-end">
