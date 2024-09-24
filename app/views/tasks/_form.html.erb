@@ -44,6 +44,14 @@
               </div>
 
               <div class="mb-3 text-end">
+                <% if task.persisted? %>
+                  <%= button_to 'Delete', '#',
+                        class: "btn btn-danger ms-2",
+                        data: {
+                          controller: 'tasks--delete',
+                          action: 'tasks--delete#delete',
+                          "tasks--delete_url_value": task_path(task.id) } %>
+                <% end %>                
                 <%= form.submit submit_label(task), class: "btn btn-primary", data: { disable_with: submit_label(task) } %>
               </div>
             <% end %>

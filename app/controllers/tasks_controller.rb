@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ complete show edit update destroy ]
 
   # GET /tasks or /tasks.json
   def index
@@ -17,7 +17,6 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    @task = Task.find(params[:id])
     respond_to do |format|
       format.html
       format.turbo_stream { render turbo_stream: turbo_stream.replace("task_form", partial: "tasks/form", locals: { task: @task }) }
@@ -60,12 +59,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to tasks_path, status: :see_other, notice: "Task was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream { render partial: "shared/redirect", locals: { url: tasks_path } }
     end
   end
 
   def complete
-    @task = Task.find(params[:id])
     @task.update(completed: true)
 
     respond_to do |format|
@@ -83,6 +81,11 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      respond_to do |format|
+        format.html { redirect_to tasks_path, alert: "Task not found." }
+        format.turbo_stream { render partial: "shared/redirect", locals: { url: tasks_path } }
+      end
     end
 
     # Only allow a list of trusted parameters through.
