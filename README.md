@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+bin/rails db:create RAILS_ENV=test
+bundle exec rspec
