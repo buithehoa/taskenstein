@@ -1,4 +1,9 @@
-<%#= render tasks %>
-<% tasks.each do |task| %>
-  <%= render partial: "task", locals: { task: task } %>
+<% if tasks.empty? %>
+    <div class="alert alert-info text-center" role="alert">
+        Ready to get started? Click "New" to create your first task and stay organized!
+    </div>
+<% else %>
+    <% tasks.each do |task| %>
+    <%= render partial: "task", locals: { task: task } %>
+    <% end %>
 <% end %>

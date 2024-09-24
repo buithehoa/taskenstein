@@ -1,7 +1,7 @@
 <%= turbo_stream.replace "task_form" do %>
-  <%= turbo_frame_tag "task_form" do %>
-    <script type="text/javascript">
-      window.location.href = "<%= url %>";
-    </script>
-  <% end %>
+    <%= turbo_frame_tag "task_form" do %>
+        <script type="text/javascript">
+            window.location.href = "<%= url %>";
+        </script>
+    <% end %>
 <% end %>
