@@ -2,8 +2,7 @@
 
 import { Turbo } from "@hotwired/turbo-rails";
 import flatpickr from "flatpickr";
-
-console.log('application.js loaded');
+import "controllers"
 
 document.addEventListener("turbo:load", () => {
     console.log('turbo loaded');

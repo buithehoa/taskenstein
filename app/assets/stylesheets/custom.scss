@@ -1,3 +1,5 @@
-tasks .task .due_at {
-    min-width: 210px;
+#tasks .task {
+    .due_at {
+        min-width: 210px;
+    }
 }

@@ -1,53 +1,55 @@
-<div class="container py-5">
-  <div class="row mb-4">
-    <div class="col-md-10 mx-auto d-flex">
-      <%= link_to 'Back to tasks', tasks_path, class: 'btn btn-secondary' %>
+<%= turbo_frame_tag "task_form" do %>
+  <div class="container py-5" data-controller="tasks">
+    <div class="row mb-4">
+      <div class="col-md-10 mx-auto d-flex">
+        <%= link_to 'Back to tasks', tasks_path, class: 'btn btn-secondary' %>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <div class="card">
-        <div class="card-body">
-          <%= form_with(model: task) do |form| %>
-            <% if task.errors.any? %>
-              <div class="alert alert-danger">
-                <h4 class="alert-heading"><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h4>
-                <ul class="mb-0">
-                  <% task.errors.each do |error| %>
-                    <li><%= error.full_message %></li>
-                  <% end %>
-                </ul>
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <%= form_with(model: task, data: { turbo_frame: "task_form" }) do |form| %>
+              <% if task.errors.any? %>
+                <div class="alert alert-danger">
+                  <h4 class="alert-heading"><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h4>
+                  <ul class="mb-0">
+                    <% task.errors.each do |error| %>
+                      <li><%= error.full_message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>            
+
+              <div class="mb-3">
+                <label for="task_title" class="form-label">
+                  Title <span class="text-danger">*</span>
+                </label>
+                <%= form.text_field :title, class: "form-control" %>
               </div>
-            <% end %>            
 
-            <div class="mb-3">
-              <label for="task_title" class="form-label">
-                Title <span class="text-danger">*</span>
-              </label>
-              <%= form.text_field :title, class: "form-control" %>
-            </div>
+              <div class="mb-3">
+                <label for="task_description" class="form-label">Description</label>
+                <%= form.text_area :description, class: "form-control", rows: 5 %>
+              </div>
 
-            <div class="mb-3">
-              <label for="task_description" class="form-label">Description</label>
-              <%= form.text_area :description, class: "form-control", rows: 5 %>
-            </div>
+              <div class="mb-3 w-50">
+                <label for="task_priority" class="form-label">Priority</label>
+                <%= form.select :priority, options_for_select([['Low Priority', 'low'], ['Medium Priority', 'medium'], ['High Priority', 'high']], selected: task.priority), {}, class: "form-select" %>
+              </div>
 
-            <div class="mb-3 w-50">
-              <label for="task_priority" class="form-label">Priority</label>
-              <%= form.select :priority, options_for_select([['Low Priority', 'low'], ['Medium Priority', 'medium'], ['High Priority', 'high']], selected: task.priority), {}, class: "form-select" %>
-            </div>
+              <div class="mb-3 w-50">
+                <label for="task_due_at" class="form-label">Due at</label>
+                <%= form.text_field :due_at, class: "form-control datetimepicker" %>
+              </div>
 
-            <div class="mb-3 w-50">
-              <label for="task_due_at" class="form-label">Due at</label>
-              <%= form.text_field :due_at, class: "form-control datetimepicker" %>
-            </div>
-
-            <div class="mb-3 text-end">
-              <%= form.submit "Create Task", class: "btn btn-primary", data: { disable_with: "Create Task" } %>
-            </div>
-          <% end %>
+              <div class="mb-3 text-end">
+                <%= form.submit "Create Task", class: "btn btn-primary", data: { disable_with: "Create Task" } %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>

@@ -10,17 +10,19 @@
             <small class="text-muted"><%= task.description %></small>
         </div>
     </div>
-    <div class="col-auto align-self-start">
+    <div class="col-auto align-self-start priority">
         <span class="badge <%= priority_class(task) %> text-uppercase">
           <%= priority_label(task) %>
         </span>
     </div>
-    <div class="col-auto align-self-start due_at" style="min-width: 200px">
+    <div class="col-auto align-self-start due_at">
       <% if task.due_at.present? %>
         <span class="badge bg-light text-secondary">
           <i class="fa-regular fa-clock me-2"></i>
           <%= task.due_at.to_fs(:due_date) %>
         </span>
+      <% else %>
+        &nbsp;
       <% end %>
     </div>
 </div>

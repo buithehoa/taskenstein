@@ -23,13 +23,15 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: "Task was successfully created." }
-        format.json { render :show, status: :created, location: @task }
-      else
+    if @task.save
+      respond_to do |format|
+        format.html { redirect_to tasks_path, notice: 'Task was successfully created.' }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("task_form", partial: "shared/redirect", locals: { url: tasks_path }) }
+      end
+    else
+      respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("task_form", partial: "tasks/form", locals: { task: @task }) }
       end
     end
   end
