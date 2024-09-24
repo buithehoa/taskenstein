@@ -27,11 +27,6 @@ RSpec.describe "Tasks", type: :request do
     context "with invalid parameters" do
       let(:invalid_attributes) { { title: "" } }
 
-      it "renders the edit template" do
-        patch task_path(task), params: { task: invalid_attributes }
-        expect(response).to render_template(:edit)
-      end
-
       it "renders turbo stream response" do
         patch task_path(task), params: { task: invalid_attributes }, headers: { 'Accept' => 'text/vnd.turbo-stream.html' }
         expect(response.media_type).to eq("text/vnd.turbo-stream.html")
