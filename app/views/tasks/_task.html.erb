@@ -6,7 +6,9 @@
     </div>
     <div class="col">
         <div>
-            <strong><%= task.title %></strong><br>
+            <a href="<%= edit_task_path(task.id) %>" class="text-decoration-none text-reset" data-turbo-frame="_top">
+              <strong><%= task.title %></strong><br>
+            </a>
             <small class="text-muted"><%= task.description %></small>
         </div>
     </div>

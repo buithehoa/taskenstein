@@ -1,4 +1,8 @@
 module TasksHelper
+  def submit_label(task)
+    task.new_record? ? "Create" : "Update"
+  end
+
   def priority_label(task)
     if task.high?
       Task::PRIORITY_LABELS[:high]

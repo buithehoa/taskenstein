@@ -44,7 +44,7 @@
               </div>
 
               <div class="mb-3 text-end">
-                <%= form.submit "Create Task", class: "btn btn-primary", data: { disable_with: "Create Task" } %>
+                <%= form.submit submit_label(task), class: "btn btn-primary", data: { disable_with: submit_label(task) } %>
               </div>
             <% end %>
           </div>
