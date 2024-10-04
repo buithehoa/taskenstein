@@ -48,7 +48,7 @@ gem "font-awesome-sass", "~> 6.5.2"
 
 gem "flatpickr", "~> 4.6.13"
 
-gem "pagy", "~> 9.0.9"
+gem "pagy", "~> 9.1.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
